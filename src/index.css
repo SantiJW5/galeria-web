@@ -1,0 +1,94 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Rajdhani:wght@400;500;600;700&display=swap");
+
+:root {
+  --bg-main: #030b16;
+  --bg-secondary: #071524;
+  --bg-card: rgba(8, 24, 42, 0.78);
+  --bg-card-strong: rgba(10, 31, 53, 0.95);
+
+  --border-main: rgba(66, 190, 255, 0.35);
+  --border-strong: rgba(102, 220, 255, 0.7);
+
+  --text-main: #d9f6ff;
+  --text-soft: #8dbfd1;
+  --text-dim: #5f8ea3;
+
+  --accent: #35d7ff;
+  --accent-strong: #00b7ff;
+  --accent-soft: rgba(53, 215, 255, 0.18);
+
+  --danger: #ff5f7d;
+  --success: #27e89d;
+
+  --shadow-glow: 0 0 12px rgba(53, 215, 255, 0.2),
+    0 0 28px rgba(0, 183, 255, 0.1);
+
+  --shadow-strong: 0 0 15px rgba(53, 215, 255, 0.3),
+    0 0 40px rgba(0, 183, 255, 0.12);
+
+  --radius: 16px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "Rajdhani", Arial, sans-serif;
+  color: var(--text-main);
+  background:
+    radial-gradient(circle at top, rgba(0, 163, 255, 0.12), transparent 25%),
+    linear-gradient(180deg, #020812 0%, #03101c 100%);
+  background-color: var(--bg-main);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(53, 215, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(53, 215, 255, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(circle at center, black 45%, transparent 100%);
+}
+
+button,
+textarea,
+input {
+  font-family: inherit;
+}
+
+button {
+  color: var(--text-main);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #07111d;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(53, 215, 255, 0.35);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(53, 215, 255, 0.55);
+}

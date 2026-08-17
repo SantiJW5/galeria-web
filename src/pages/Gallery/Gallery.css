@@ -1,0 +1,40 @@
+.gallery-page {
+  min-height: 100vh;
+  padding: 32px;
+  position: relative;
+}
+
+.gallery-page::after {
+  content: "";
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(53, 215, 255, 0.14) 0%,
+    rgba(53, 215, 255, 0.04) 30%,
+    transparent 70%
+  );
+  filter: blur(10px);
+  pointer-events: none;
+}
+
+.gallery-page h1 {
+  margin: 0 0 28px;
+  font-family: "Orbitron", sans-serif;
+  font-size: 34px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--text-main);
+  text-shadow: 0 0 10px rgba(53, 215, 255, 0.4);
+}
+
+.gallery-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: flex-start;
+}

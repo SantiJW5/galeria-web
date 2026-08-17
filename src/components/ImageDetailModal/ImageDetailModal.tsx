@@ -1,0 +1,68 @@
+import { useEffect } from "react";
+import { X } from "lucide-react";
+
+import type { GalleryImage } from "../../types/GalleryImage";
+
+import "./ImageDetailModal.css";
+
+interface ImageDetailModalProps {
+  item: GalleryImage;
+  onClose: () => void;
+}
+
+function ImageDetailModal({
+  item,
+  onClose,
+}: ImageDetailModalProps) {
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [onClose]);
+
+  return (
+    <div
+      className="detail-overlay"
+      onClick={onClose}
+    >
+      <div
+        className="detail-container"
+        onClick={(event) => event.stopPropagation()}
+      >
+        <button
+          className="detail-close"
+          onClick={onClose}
+        >
+          <X size={24} />
+        </button>
+
+        <div className="detail-content">
+          <div className="detail-image-section">
+            <img
+              src={item.image}
+              alt="Imagen guardada"
+            />
+          </div>
+
+          <div className="detail-text-section">
+            <h2>Descripción</h2>
+
+            <p>
+              {item.text || "Esta imagen no tiene texto."}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default ImageDetailModal;
