@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { X } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Copy, Check, X } from "lucide-react";
 
 import type { GalleryImage } from "../../types/GalleryImage";
 
@@ -14,6 +14,8 @@ function ImageDetailModal({
   item,
   onClose,
 }: ImageDetailModalProps) {
+  const [copied, setCopied] = useState(false);
+
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
@@ -28,6 +30,20 @@ function ImageDetailModal({
     };
   }, [onClose]);
 
+  const handleCopyText = async () => {
+    try {
+      await navigator.clipboard.writeText(item.text);
+
+      setCopied(true);
+
+      setTimeout(() => {
+        setCopied(false);
+      }, 1500);
+    } catch (error) {
+      console.error("No se pudo copiar el texto:", error);
+    }
+  };
+
   return (
     <div
       className="detail-overlay"
@@ -37,12 +53,27 @@ function ImageDetailModal({
         className="detail-container"
         onClick={(event) => event.stopPropagation()}
       >
-        <button
-          className="detail-close"
-          onClick={onClose}
-        >
-          <X size={24} />
-        </button>
+        <div className="detail-actions">
+          <button
+            className="detail-copy"
+            onClick={handleCopyText}
+            title="Copiar texto"
+          >
+            {copied ? (
+              <Check size={22} />
+            ) : (
+              <Copy size={22} />
+            )}
+          </button>
+
+          <button
+            className="detail-close"
+            onClick={onClose}
+            title="Cerrar"
+          >
+            <X size={24} />
+          </button>
+        </div>
 
         <div className="detail-content">
           <div className="detail-image-section">
